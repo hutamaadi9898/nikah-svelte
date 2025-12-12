@@ -14,48 +14,48 @@
 	<title>Dashboard | NIKAH Admin</title>
 </svelte:head>
 
-<div class="space-y-8">
+<div class="space-y-10">
 	<!-- Header -->
 	<div>
-		<h1 class="font-display text-3xl tracking-tight">Dashboard</h1>
-		<p class="text-muted mt-1">Welcome back! Here's an overview of your wedding.</p>
+		<h1 class="font-display text-4xl lg:text-5xl tracking-tight text-text">Dashboard</h1>
+		<p class="text-muted mt-2 text-lg">Welcome back. Here's your wedding overview.</p>
 	</div>
 
 	{#if data.wedding && data.stats}
 		<!-- Quick Stats -->
-		<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-			<Card>
-				<p class="text-xs tracking-[0.18em] text-muted uppercase">Confirmed</p>
-				<p class="font-display text-3xl mt-1 text-green-600">{data.stats.confirmed}</p>
-				<p class="text-xs text-muted mt-1">{data.stats.totalPax} total guests</p>
+		<div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+			<Card class="p-6">
+				<p class="text-xs font-semibold tracking-wide text-muted uppercase">Confirmed</p>
+				<p class="font-display text-5xl mt-3 text-emerald-700/80">{data.stats.confirmed}</p>
+				<p class="text-sm text-muted mt-2">{data.stats.totalPax} guests total</p>
 			</Card>
 
-			<Card>
-				<p class="text-xs tracking-[0.18em] text-muted uppercase">Pending</p>
-				<p class="font-display text-3xl mt-1 text-amber-500">{data.stats.pending}</p>
+			<Card class="p-6">
+				<p class="text-xs font-semibold tracking-wide text-muted uppercase">Pending</p>
+				<p class="font-display text-5xl mt-3 text-amber-600/80">{data.stats.pending}</p>
 			</Card>
 
-			<Card>
-				<p class="text-xs tracking-[0.18em] text-muted uppercase">Declined</p>
-				<p class="font-display text-3xl mt-1 text-red-500">{data.stats.declined}</p>
+			<Card class="p-6">
+				<p class="text-xs font-semibold tracking-wide text-muted uppercase">Declined</p>
+				<p class="font-display text-5xl mt-3 text-rose-600/80">{data.stats.declined}</p>
 			</Card>
 
-			<Card>
-				<p class="text-xs tracking-[0.18em] text-muted uppercase">Wishes</p>
-				<p class="font-display text-3xl mt-1">{data.stats.totalWishes}</p>
+			<Card class="p-6">
+				<p class="text-xs font-semibold tracking-wide text-muted uppercase">Wishes</p>
+				<p class="font-display text-5xl mt-3 text-text/80">{data.stats.totalWishes}</p>
 			</Card>
 		</div>
 
 		<!-- Countdown & Actions -->
-		<div class="grid md:grid-cols-2 gap-6">
-			<Card variant="elevated">
-				<h2 class="font-display text-xl mb-6">Countdown</h2>
+		<div class="grid lg:grid-cols-2 gap-8">
+			<Card variant="elevated" class="p-8">
+				<h2 class="font-display text-3xl mb-8">Countdown</h2>
 				<Countdown targetDate={new Date(data.wedding.weddingDate)} />
 			</Card>
 
-			<Card>
-				<h2 class="font-display text-xl mb-4">Quick Actions</h2>
-				<div class="space-y-3">
+			<Card class="p-8">
+				<h2 class="font-display text-3xl mb-6">Quick Actions</h2>
+				<div class="space-y-4">
 					<Button
 						variant="outline"
 						fullWidth
@@ -68,24 +68,24 @@
 					<Button variant="outline" fullWidth onclick={() => window.open(`/${data.wedding?.slug}`, '_blank')}>
 						👁 Preview Invitation
 					</Button>
-					<a href="/admin/guests">
-						<Button variant="ghost" fullWidth>👥 Manage Guests</Button>
+					<a href="/admin/guests" class="block">
+						<Button variant="subtle" fullWidth>👥 Manage Guests</Button>
 					</a>
 				</div>
 			</Card>
 		</div>
 
 		<!-- Wedding Info -->
-		<Card>
-			<h2 class="font-display text-xl mb-4">Wedding Details</h2>
-			<div class="grid md:grid-cols-2 gap-4 text-sm">
+		<Card class="p-8">
+			<h2 class="font-display text-3xl mb-6">Wedding Details</h2>
+			<div class="grid md:grid-cols-2 gap-8 text-[0.95rem]">
 				<div>
-					<p class="text-muted">Couple</p>
-					<p class="font-medium">{data.wedding.coupleNames}</p>
+					<p class="text-muted text-xs uppercase tracking-wide font-semibold mb-1">Couple</p>
+					<p class="font-display text-2xl text-text">{data.wedding.coupleNames}</p>
 				</div>
 				<div>
-					<p class="text-muted">Date</p>
-					<p class="font-medium">
+					<p class="text-muted text-xs uppercase tracking-wide font-semibold mb-1">Date</p>
+					<p class="font-display text-2xl text-text">
 						{new Date(data.wedding.weddingDate).toLocaleDateString('en-US', {
 							weekday: 'long',
 							year: 'numeric',
@@ -95,19 +95,26 @@
 					</p>
 				</div>
 				<div class="md:col-span-2">
-					<p class="text-muted">Venue</p>
-					<p class="font-medium whitespace-pre-line">{data.wedding.venueDetails}</p>
+					<p class="text-muted text-xs uppercase tracking-wide font-semibold mb-1">Venue</p>
+					<p class="font-medium whitespace-pre-line leading-relaxed text-text/80">{data.wedding.venueDetails}</p>
 				</div>
 			</div>
 		</Card>
 	{:else}
 		<!-- No wedding yet -->
-		<Card variant="elevated" class="text-center py-12">
-			<p class="font-display text-2xl mb-2">No Wedding Found</p>
-			<p class="text-muted mb-6">Create your wedding to get started.</p>
-			<a href="/admin/create">
-				<Button>Create Wedding</Button>
-			</a>
+		<Card variant="glass" class="text-center py-20">
+            <div class="max-w-md mx-auto space-y-6">
+                <span class="text-6xl">✨</span>
+                <h2 class="font-display text-4xl text-text">Welcome to Nikah</h2>
+                <p class="text-muted text-lg leading-relaxed text-balance">
+                    You haven't set up your wedding yet. Create one now to start sending invitations and collecting RSVPs.
+                </p>
+                <div class="pt-4">
+                    <a href="/admin/create">
+                        <Button class="px-8">Create Wedding</Button>
+                    </a>
+                </div>
+            </div>
 		</Card>
 	{/if}
 </div>

@@ -24,60 +24,60 @@
 	<title>Guests | NIKAH Admin</title>
 </svelte:head>
 
-<div class="space-y-6">
+<div class="space-y-8">
 	<!-- Header -->
 	<div class="flex items-center justify-between">
 		<div>
-			<h1 class="font-display text-3xl tracking-tight">Guest List</h1>
-			<p class="text-muted mt-1">Manage your wedding guests and RSVPs.</p>
+			<h1 class="font-display text-4xl tracking-tight text-text">Guest List</h1>
+			<p class="text-muted mt-2 text-base">Manage your wedding guests and RSVPs.</p>
 		</div>
 		<Button onclick={() => {}}>+ Add Guest</Button>
 	</div>
 
 	{#if data.guests.length > 0}
 		<!-- Stats summary -->
-		<div class="flex gap-4 text-sm">
-			<span class="text-muted">
-				Total: <span class="font-medium text-text">{data.guests.length}</span>
+		<div class="flex gap-6 text-sm border-b border-border/10 pb-6">
+			<span class="text-text font-medium">
+				Total: <span class="ml-1 text-muted">{data.guests.length}</span>
 			</span>
-			<span class="text-green-600">
-				Confirmed: {data.guests.filter((g) => g.status === 'confirmed').length}
+			<span class="text-emerald-700">
+				Confirmed: <span class="font-medium">{data.guests.filter((g) => g.status === 'confirmed').length}</span>
 			</span>
 			<span class="text-amber-600">
-				Pending: {data.guests.filter((g) => g.status === 'pending').length}
+				Pending: <span class="font-medium">{data.guests.filter((g) => g.status === 'pending').length}</span>
 			</span>
-			<span class="text-red-600">
-				Declined: {data.guests.filter((g) => g.status === 'declined').length}
+			<span class="text-rose-600">
+				Declined: <span class="font-medium">{data.guests.filter((g) => g.status === 'declined').length}</span>
 			</span>
 		</div>
 
 		<!-- Guest table -->
-		<Card>
+		<Card class="p-0 overflow-hidden bg-white/50 border-border/10">
 			<div class="overflow-x-auto">
-				<table class="w-full text-sm">
-					<thead>
-						<tr class="border-b border-border/10 text-left text-xs uppercase tracking-wider text-muted">
-							<th class="pb-3 font-medium">Name</th>
-							<th class="pb-3 font-medium">Status</th>
-							<th class="pb-3 font-medium">Pax</th>
-							<th class="pb-3 font-medium">Contact</th>
-							<th class="pb-3 font-medium text-right">Actions</th>
+				<table class="w-full text-sm text-left">
+					<thead class="bg-surface/50 text-muted uppercase text-[0.7rem] font-semibold tracking-wide">
+						<tr>
+							<th class="px-6 py-4">Name</th>
+							<th class="px-6 py-4">Status</th>
+							<th class="px-6 py-4">Pax</th>
+							<th class="px-6 py-4">Contact</th>
+							<th class="px-6 py-4 text-right">Actions</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="divide-y divide-border/5">
 						{#each data.guests as guest}
-							<tr class="border-b border-border/5 last:border-0">
-								<td class="py-3 font-medium">{guest.name}</td>
-								<td class="py-3">
-									<span class="inline-block px-2 py-0.5 rounded-full text-xs font-medium {statusColors[guest.status]}">
+							<tr class="hover:bg-surface/30 transition-colors group">
+								<td class="px-6 py-4 font-medium text-text">{guest.name}</td>
+								<td class="px-6 py-4">
+									<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize {statusColors[guest.status]}">
 										{guest.status}
 									</span>
 								</td>
-								<td class="py-3">{guest.pax}</td>
-								<td class="py-3 text-muted">{guest.contact || '—'}</td>
-								<td class="py-3 text-right">
+								<td class="px-6 py-4 text-muted tabular-nums">{guest.pax}</td>
+								<td class="px-6 py-4 text-muted">{guest.contact || '—'}</td>
+								<td class="px-6 py-4 text-right">
 									<button
-										class="text-muted hover:text-accent transition text-xs"
+										class="text-accent hover:text-accent-dark transition-colors text-xs font-medium opacity-0 group-hover:opacity-100"
 										onclick={() => copyGuestLink(guest.slug)}
 									>
 										Copy Link
@@ -90,9 +90,15 @@
 			</div>
 		</Card>
 	{:else}
-		<Card class="text-center py-12">
-			<p class="text-muted mb-4">No guests yet.</p>
-			<Button onclick={() => {}}>Add Your First Guest</Button>
+		<Card class="text-center py-20 bg-surface/30 border-dashed">
+            <div class="max-w-sm mx-auto space-y-4">
+                <span class="text-4xl">👥</span>
+                <p class="text-text font-medium text-lg">No guests yet</p>
+                <p class="text-muted text-sm">Start inviting people to your special day.</p>
+                <div class="pt-2">
+                    <Button onclick={() => {}}>Add Your First Guest</Button>
+                </div>
+            </div>
 		</Card>
 	{/if}
 </div>

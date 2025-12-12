@@ -14,50 +14,53 @@
 	<title>Settings | NIKAH Admin</title>
 </svelte:head>
 
-<div class="space-y-6">
+<div class="space-y-8">
 	<div>
-		<h1 class="font-display text-2xl tracking-tight">Settings</h1>
-		<p class="text-sm text-muted mt-1">Manage your wedding invitation settings</p>
+		<h1 class="font-display text-4xl tracking-tight text-text">Settings</h1>
+		<p class="text-muted mt-2 text-base">Manage your wedding invitation details.</p>
 	</div>
 
-	<Card>
-		<h2 class="font-display text-lg mb-4">Wedding Details</h2>
+	<Card class="p-8">
+		<h2 class="font-display text-2xl mb-6 text-text">Wedding Details</h2>
 		
 		{#if data.wedding}
-			<form class="space-y-4">
+			<form class="space-y-6">
 				<Input label="Couple Names" bind:value={coupleNames} placeholder="John & Jane" />
 				<Input label="Wedding URL Slug" bind:value={slug} placeholder="john-and-jane" />
 				<Input label="Wedding Date" type="date" bind:value={weddingDate} />
 				
-				<div class="space-y-2">
-					<label class="block text-xs tracking-[0.18em] text-muted uppercase">Venue Details</label>
+				<div class="space-y-1.5">
+					<label class="block text-xs font-medium tracking-wide text-muted uppercase ml-1" for="venueDetailsSettings">Venue Details</label>
 					<textarea 
-						class="w-full rounded-md border border-border/10 bg-bg/60 px-4 py-3 text-sm outline-none transition focus:border-accent/40 min-h-24"
+                        id="venueDetailsSettings"
+						class="w-full rounded-xl border border-border/40 bg-white/50 px-4 py-3 text-[0.95rem] text-text outline-none ring-0 transition-all duration-300 placeholder:text-muted/40 focus:border-text/20 focus:bg-white focus:shadow-sm min-h-32"
 						bind:value={venueDetails}
 						placeholder="Enter venue name and address..."
 					></textarea>
 				</div>
 
-				<Button type="submit">Save Changes</Button>
+				<div class="pt-2">
+                    <Button type="submit">Save Changes</Button>
+                </div>
 			</form>
 		{:else}
-			<div class="text-center py-8">
-				<p class="text-muted mb-4">You haven't created a wedding yet.</p>
+			<div class="text-center py-12">
+				<p class="text-muted mb-6">You haven't created a wedding yet.</p>
 				<Button>Create Your Wedding</Button>
 			</div>
 		{/if}
 	</Card>
 
-	<Card>
-		<h2 class="font-display text-lg mb-4">Account</h2>
-		<div class="space-y-3">
+	<Card class="p-8">
+		<h2 class="font-display text-2xl mb-6 text-text">Account</h2>
+		<div class="grid grid-cols-2 gap-8 text-[0.95rem]">
 			<div>
-				<p class="text-xs text-muted uppercase tracking-wide">Email</p>
-				<p class="text-sm">{data.user.email}</p>
+				<p class="text-xs text-muted uppercase tracking-wide font-medium mb-1">Email</p>
+				<p class="text-text font-medium">{data.user.email}</p>
 			</div>
 			<div>
-				<p class="text-xs text-muted uppercase tracking-wide">Name</p>
-				<p class="text-sm">{data.user.name}</p>
+				<p class="text-xs text-muted uppercase tracking-wide font-medium mb-1">Name</p>
+				<p class="text-text font-medium">{data.user.name}</p>
 			</div>
 		</div>
 	</Card>

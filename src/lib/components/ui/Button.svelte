@@ -1,14 +1,15 @@
 <script lang="ts">
 	/**
-	 * Button component with Minimalist Luxury variants.
-	 * Supports: primary, outline, ghost, danger.
+	 * Button component with Modern Editorial variants.
+	 * Supports: primary, outline, ghost, danger, subtle.
+	 * Shape: Pill (rounded-full)
 	 */
 	import type { Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	interface Props extends HTMLButtonAttributes {
 		/** Button style variant */
-		variant?: 'primary' | 'outline' | 'ghost' | 'danger';
+		variant?: 'primary' | 'outline' | 'ghost' | 'danger' | 'subtle';
 		/** Loading state - shows spinner and disables button */
 		loading?: boolean;
 		/** Full width button */
@@ -30,22 +31,24 @@
 	// Base classes shared across all variants
 	const baseClasses = `
 		inline-flex items-center justify-center gap-2
-		rounded-md px-4 py-3
-		font-body text-sm tracking-wide
-		transition duration-200 ease-out
+		rounded-full px-6 py-3
+		font-body text-[0.925rem] font-medium tracking-normal
+		transition-all duration-300 ease-out
 		disabled:opacity-50 disabled:cursor-not-allowed
+		active:scale-[0.98]
 		focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-bg
 	`;
 
 	// Variant-specific classes
 	const variantClasses: Record<NonNullable<Props['variant']>, string> = {
-		primary: 'bg-text text-bg border border-border/15 hover:bg-text/90',
-		outline: 'bg-transparent text-text border border-border/20 hover:border-border/40 hover:bg-surface/50',
-		ghost: 'bg-transparent text-text hover:bg-surface/60',
-		danger: 'bg-red-600 text-white border border-red-700 hover:bg-red-700'
+		primary: 'bg-accent text-white border border-transparent hover:bg-accent/90 shadow-md shadow-accent/20 hover:shadow-lg hover:shadow-accent/30',
+		outline: 'bg-transparent text-text border border-border hover:border-accent hover:text-accent hover:bg-surface',
+		ghost: 'bg-transparent text-text hover:bg-surface text-muted hover:text-accent',
+		danger: 'bg-red-700 text-white border border-transparent hover:bg-red-800 shadow-sm',
+        subtle: 'bg-surface text-text border border-border hover:border-accent/30 hover:bg-white shadow-sm'
 	};
 
-	const widthClass = fullWidth ? 'w-full' : '';
+	const widthClass = $derived(fullWidth ? 'w-full' : '');
 </script>
 
 <button

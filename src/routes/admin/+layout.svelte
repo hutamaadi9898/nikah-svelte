@@ -38,32 +38,31 @@
 	}
 </script>
 
-<div class="min-h-dvh bg-bg flex">
-	<!-- Sidebar -->
-	<aside class="w-64 border-r border-border/10 bg-surface/30 flex flex-col">
+<div class="min-h-dvh bg-bg flex text-text font-body">
+	<!-- Sidebar: Deep Emerald Background -->
+	<aside class="w-72 border-r border-white/5 bg-accent flex flex-col sticky top-0 h-dvh text-white">
 		<!-- Brand -->
-		<div class="h-16 flex items-center px-6 border-b border-border/10">
-			<span class="font-display text-lg tracking-tight text-accent">NIKAH</span>
-			<span class="ml-2 text-xs text-muted">Admin</span>
+		<div class="h-24 flex items-center px-8">
+			<span class="font-display text-4xl text-white tracking-normal">Nikah</span>
 		</div>
 
 		<!-- Navigation -->
-		<nav class="flex-1 py-6 px-3">
+		<nav class="flex-1 px-4 py-4">
 			<ul class="space-y-1">
 				{#each navItems as item}
 					<li>
 						<a
 							href={item.href}
 							class="
-								flex items-center gap-3 px-3 py-2.5 rounded-md
-								text-sm transition-colors
+								flex items-center gap-3 px-4 py-3.5 rounded-xl
+								text-[0.95rem] font-medium transition-all duration-200
 								{isActive(item.href)
-									? 'bg-accent/10 text-accent font-medium'
-									: 'text-muted hover:text-text hover:bg-surface/60'}
+									? 'bg-white/10 text-white shadow-inner'
+									: 'text-white/60 hover:text-white hover:bg-white/5'}
 							"
 						>
-							<!-- Simple icon placeholder -->
-							<span class="w-5 h-5 flex items-center justify-center text-xs opacity-60">
+							<span class="w-5 h-5 flex items-center justify-center opacity-70">
+                                <!-- Using text for now, but could be SVGs -->
 								{#if item.icon === 'home'}📊{/if}
 								{#if item.icon === 'users'}👥{/if}
 								{#if item.icon === 'book'}📖{/if}
@@ -78,19 +77,19 @@
 		</nav>
 
 		<!-- User info + sign out -->
-		<div class="p-4 border-t border-border/10">
-			<div class="flex items-center gap-3 mb-3">
-				<div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-xs font-medium text-accent">
+		<div class="p-6 bg-black/10">
+			<div class="flex items-center gap-3 mb-4">
+				<div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-sm font-display text-white shadow-sm">
 					{data.user.name.charAt(0).toUpperCase()}
 				</div>
 				<div class="flex-1 min-w-0">
-					<p class="text-sm font-medium truncate">{data.user.name}</p>
-					<p class="text-xs text-muted truncate">{data.user.email}</p>
+					<p class="text-sm font-medium truncate text-white">{data.user.name}</p>
+					<p class="text-xs text-white/50 truncate">{data.user.email}</p>
 				</div>
 			</div>
 			<button
 				onclick={signOut}
-				class="w-full text-left text-xs text-muted hover:text-text transition px-2 py-1"
+				class="w-full text-left text-xs text-white/60 hover:text-white transition px-2 py-1 font-medium"
 			>
 				Sign out
 			</button>
@@ -98,8 +97,8 @@
 	</aside>
 
 	<!-- Main content -->
-	<main class="flex-1 overflow-auto">
-		<div class="max-w-5xl mx-auto px-8 py-8">
+	<main class="flex-1 overflow-y-auto bg-stone-50">
+		<div class="max-w-6xl mx-auto px-12 py-12">
 			{@render children()}
 		</div>
 	</main>

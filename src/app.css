@@ -1,38 +1,61 @@
 /**
- * Global styles + design tokens for the "Minimalist Luxury" aesthetic.
+ * Global styles + design tokens for the "Rich Editorial" aesthetic.
  * Colors are declared as RGB triplets to allow alpha with Tailwind `rgb(var(--x) / <alpha>)`.
  */
 @import 'tailwindcss';
 
 /* Tailwind v4: Define custom theme values */
 @theme {
-	--font-family-body: 'Lato', ui-sans-serif, system-ui, sans-serif;
-	--font-family-display: 'Playfair Display', ui-serif, Georgia, serif;
+	/* Typography: Elegant & Modern */
+	--font-family-body: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+	--font-family-display: 'Instrument Serif', ui-serif, Georgia, serif;
 	
-	/* Color tokens mapped to Tailwind theme */
-	--color-bg: rgb(250 250 250);
-	--color-surface: rgb(245 245 247);
-	--color-text: rgb(45 45 45);
-	--color-muted: rgb(102 102 102);
-	--color-border: rgb(0 0 0);
-	--color-accent: rgb(212 175 55);
-	--color-accent-soft: rgb(138 154 91);
+	/* Palette: Rich Emerald, Cream, & Antique Gold */
+	
+    /* Background: Warm Cream / Premium Paper */
+	--color-bg: rgb(249 247 242);
+    /* Surface: Pure White */
+	--color-surface: rgb(255 255 255);
+    /* Text: Soft Black / Charcoal */
+	--color-text: rgb(26 32 44); 
+    
+    /* Primary Brand: Deep Emerald */
+    --color-accent: rgb(4 78 58); /* emerald-900 like */
+    
+    /* Secondary/Highlight: Antique Gold/Bronze */
+	--color-secondary: rgb(180 83 9); /* amber-700 like */
+    
+    /* Muted: Warm Taupe */
+	--color-muted: rgb(113 113 122);
+	--color-border: rgb(228 228 231);
+    
+    /* Radius Tokens */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
 }
 
 :root {
-	/* Radius tokens */
-	--radius-sm: 8px;
-	--radius-md: 14px;
-	--radius-lg: 20px;
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-xl: 16px;
+    
+    /* Grain Texture Data URI */
+    --bg-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
 @media (prefers-color-scheme: dark) {
 	@theme {
-		--color-bg: rgb(26 26 26);
-		--color-surface: rgb(34 34 34);
-		--color-text: rgb(245 245 247);
-		--color-muted: rgb(180 180 180);
-		--color-border: rgb(255 255 255);
+        /* Dark Mode: Luxury Midnight Green */
+		--color-bg: rgb(2 44 34); /* Very dark emerald */
+		--color-surface: rgb(6 78 59); /* Dark emerald surface */
+		--color-text: rgb(236 253 245); /* Mint white */
+		--color-muted: rgb(167 243 208);
+		--color-border: rgb(52 211 153);
+		--color-accent: rgb(251 191 36); /* Gold accent for dark mode */
 	}
 }
 
@@ -41,23 +64,53 @@
 		font-family: var(--font-family-body);
 		background-color: var(--color-bg);
 		color: var(--color-text);
-		text-rendering: geometricPrecision;
+		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+        letter-spacing: -0.01em;
 	}
+
+    /* Grain Overlay */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: var(--bg-grain);
+        pointer-events: none;
+        z-index: 50;
+        mix-blend-mode: multiply;
+        opacity: 0.5;
+    }
 
 	body {
 		min-height: 100dvh;
 	}
 
 	::selection {
-		background: color-mix(in srgb, var(--color-accent) 28%, transparent);
+		background-color: var(--color-accent);
+        color: white;
 	}
 
 	a {
 		color: inherit;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+        transition: color 0.2s ease;
 	}
+    
+    a:hover {
+        color: var(--color-accent);
+    }
 	
+	h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-family-display);
+        line-height: 1.1;
+        letter-spacing: 0em; /* Instrument Serif looks better with normal spacing */
+    }
+
 	.font-display {
 		font-family: var(--font-family-display);
 	}

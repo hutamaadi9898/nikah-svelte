@@ -12,10 +12,10 @@
 	<title>Create Wedding | NIKAH</title>
 </svelte:head>
 
-<div class="max-w-2xl mx-auto space-y-6">
-	<div class="text-center">
-		<h1 class="font-display text-3xl tracking-tight">Create Your Wedding</h1>
-		<p class="text-muted mt-2">Set up your beautiful wedding invitation</p>
+<div class="max-w-2xl mx-auto space-y-8 pt-6">
+	<div class="text-center space-y-3">
+		<h1 class="font-display text-4xl lg:text-5xl tracking-tight text-text">Create Your Wedding</h1>
+		<p class="text-muted text-base">Set up your beautiful digital invitation</p>
 	</div>
 
 	<Card variant="elevated">
@@ -60,11 +60,12 @@
 				required 
 			/>
 
-			<div class="space-y-2">
-				<label class="block text-xs tracking-[0.18em] text-muted uppercase">Venue Details</label>
+			<div class="space-y-1.5">
+				<label class="block text-xs font-medium tracking-wide text-muted uppercase ml-1" for="venueDetails">Venue Details</label>
 				<textarea 
+                    id="venueDetails"
 					name="venueDetails"
-					class="w-full rounded-md border border-border/10 bg-bg/60 px-4 py-3 text-sm outline-none transition focus:border-accent/40 min-h-24"
+					class="w-full rounded-xl border border-border/40 bg-white/50 px-4 py-3 text-[0.95rem] text-text outline-none ring-0 transition-all duration-300 placeholder:text-muted/40 focus:border-text/20 focus:bg-white focus:shadow-sm min-h-32"
 					placeholder="The Grand Ballroom&#10;123 Wedding Street&#10;City, Country"
 				></textarea>
 			</div>
