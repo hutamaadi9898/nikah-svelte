@@ -22,7 +22,7 @@
 				errorMessage = res.error.message ?? 'Unable to create account.';
 				return;
 			}
-			await goto('/');
+			await goto('/admin');
 		} catch {
 			errorMessage = 'Unable to create account.';
 		} finally {

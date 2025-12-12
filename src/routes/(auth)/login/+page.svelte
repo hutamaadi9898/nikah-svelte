@@ -20,7 +20,7 @@
 				errorMessage = res.error.message ?? 'Unable to sign in.';
 				return;
 			}
-			await goto('/');
+			await goto('/admin');
 		} catch {
 			errorMessage = 'Unable to sign in.';
 		} finally {

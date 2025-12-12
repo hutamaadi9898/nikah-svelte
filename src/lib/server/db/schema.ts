@@ -88,11 +88,14 @@ export const weddings = sqliteTable(
 	'weddings',
 	{
 		id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+		userId: text('user_id')
+			.notNull()
+			.references(() => user.id, { onDelete: 'cascade' }),
 		slug: text('slug').notNull(),
 		coupleNames: text('couple_names').notNull(),
 		weddingDate: integer('wedding_date', { mode: 'timestamp_ms' }).notNull(),
-		venueDetails: text('venue_details').notNull(),
-		themeConfig: text('theme_config').notNull(),
+		venueDetails: text('venue_details'),
+		themeConfig: text('theme_config'),
 		createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull().$defaultFn(() => new Date()),
 		updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).notNull().$defaultFn(() => new Date()).$onUpdateFn(() => new Date())
 	},

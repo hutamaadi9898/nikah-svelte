@@ -101,13 +101,15 @@ CREATE INDEX `verification_identifier_idx` ON `verification` (`identifier`);--> 
 CREATE INDEX `verification_expires_at_idx` ON `verification` (`expires_at`);--> statement-breakpoint
 CREATE TABLE `weddings` (
 	`id` text PRIMARY KEY NOT NULL,
+	`user_id` text NOT NULL,
 	`slug` text NOT NULL,
 	`couple_names` text NOT NULL,
 	`wedding_date` integer NOT NULL,
-	`venue_details` text NOT NULL,
-	`theme_config` text NOT NULL,
+	`venue_details` text,
+	`theme_config` text,
 	`created_at` integer NOT NULL,
-	`updated_at` integer NOT NULL
+	`updated_at` integer NOT NULL,
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `weddings_slug_unique` ON `weddings` (`slug`);--> statement-breakpoint

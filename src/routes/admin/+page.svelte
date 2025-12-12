@@ -105,7 +105,9 @@
 		<Card variant="elevated" class="text-center py-12">
 			<p class="font-display text-2xl mb-2">No Wedding Found</p>
 			<p class="text-muted mb-6">Create your wedding to get started.</p>
-			<Button onclick={() => {}}>Create Wedding</Button>
+			<a href="/admin/create">
+				<Button>Create Wedding</Button>
+			</a>
 		</Card>
 	{/if}
 </div>
