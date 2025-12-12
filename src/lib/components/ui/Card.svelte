@@ -16,10 +16,10 @@
 	const { variant = 'default', children, class: className = '', ...rest }: Props = $props();
 
 	const variantClasses: Record<NonNullable<Props['variant']>, string> = {
-		default: 'bg-surface border border-border/40 shadow-sm shadow-stone-200/50',
-		elevated: 'bg-surface border-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)]', // Soft, boutique shadow
+		default: 'bg-surface border border-border shadow-[0px_4px_20px_0px_rgba(0,0,0,0.02)]', // Extremely subtle elegant shadow
+		elevated: 'bg-surface border border-border shadow-lg shadow-zinc-200/50',
 		outlined: 'bg-transparent border border-border',
-        glass: 'bg-surface border border-border/40 shadow-sm' // Fallback to default for now as we removed glass
+        glass: 'bg-surface/80 border border-border backdrop-blur-sm' // Subtle glass, not heavy
 	};
 </script>
 

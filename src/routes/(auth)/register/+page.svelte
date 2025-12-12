@@ -45,11 +45,11 @@
     </div>
 
     <!-- Left: Form Section -->
-    <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-bg relative">
-        <div class="w-full max-w-md space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white relative border-l border-zinc-100">
+        <div class="w-full max-w-sm space-y-10 animate-in fade-in slide-in-from-bottom-2 duration-700">
             
             <div class="text-center lg:text-left space-y-2">
-                <h2 class="font-display text-4xl text-text">Create Account</h2>
+                <h2 class="font-display text-4xl text-text tracking-tight">Create Account</h2>
                 <p class="text-muted text-base">Start your beautiful journey with Nikah.</p>
             </div>
 

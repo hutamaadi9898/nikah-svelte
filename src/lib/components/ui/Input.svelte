@@ -29,14 +29,14 @@
         <input
             id={inputId}
             class="
-                w-full rounded-lg
-                border-0 bg-stone-100
-                px-4 py-3 text-[0.95rem] text-text
-                outline-none ring-1 ring-transparent transition-all duration-300
-                placeholder:text-muted/60
-                focus:bg-white focus:ring-accent/50 focus:shadow-md focus:shadow-accent/5
-                group-hover:bg-stone-50
-                aria-invalid:ring-red-500/50 aria-invalid:focus:ring-red-500
+                w-full rounded-md
+                border border-border bg-white
+                px-3.5 py-2.5 text-sm text-text
+                outline-none ring-0 transition-all duration-200
+                placeholder:text-muted/50
+                focus:border-accent focus:ring-1 focus:ring-accent
+                group-hover:border-zinc-300
+                aria-invalid:border-red-500 aria-invalid:focus:ring-red-500
             "
             bind:value
             aria-invalid={!!error}

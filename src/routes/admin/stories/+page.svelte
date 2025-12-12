@@ -1,50 +1,66 @@
+<!--
+	Admin Stories page.
+	Manage the couple's love story timeline.
+-->
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { Card, Button } from '$lib/components/ui';
 
 	const { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
-	<title>Our Story | NIKAH Admin</title>
+	<title>Stories | NIKAH Admin</title>
 </svelte:head>
 
 <div class="space-y-8">
-	<div class="flex items-center justify-between">
+	<!-- Header -->
+	<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 		<div>
-			<h1 class="font-display text-4xl tracking-tight text-text">Our Story</h1>
-			<p class="text-muted mt-2 text-base">Share your love story with your guests.</p>
+			<h1 class="font-display text-3xl sm:text-4xl text-zinc-900">Your Story</h1>
+			<p class="text-zinc-500 mt-1">Share your journey with your guests</p>
 		</div>
-		<Button>Add Story</Button>
+		<button class="px-5 py-2.5 bg-zinc-900 text-white rounded-lg text-sm font-medium hover:bg-zinc-800 transition-colors">
+			Add Story
+		</button>
 	</div>
 
 	{#if data.stories.length === 0}
-		<Card class="text-center py-20 bg-surface/30 border-dashed">
-			<div class="max-w-sm mx-auto space-y-4">
-                <span class="text-4xl">📖</span>
-				<p class="text-text font-medium text-lg">No stories yet</p>
-                <p class="text-muted text-sm">Your guests would love to know how you met. Add your first story now.</p>
-				<div class="pt-2">
-                    <Button variant="subtle">Add Your First Story</Button>
-                </div>
+		<!-- Empty State -->
+		<div class="text-center py-16 bg-white rounded-xl border border-zinc-200">
+			<div class="w-16 h-16 mx-auto mb-6 rounded-full bg-zinc-100 flex items-center justify-center">
+				<span class="text-3xl">📖</span>
 			</div>
-		</Card>
+			<h2 class="font-display text-xl text-zinc-900 mb-2">No stories yet</h2>
+			<p class="text-zinc-500 max-w-sm mx-auto mb-6">
+				Your guests would love to know how you met. Add your first story now.
+			</p>
+			<button class="px-6 py-3 bg-zinc-900 text-white rounded-lg font-medium hover:bg-zinc-800 transition-colors">
+				Add Your First Story
+			</button>
+		</div>
 	{:else}
-		<div class="grid gap-6">
+		<!-- Stories List -->
+		<div class="space-y-4">
 			{#each data.stories as story}
-				<Card class="p-6 transition-all hover:shadow-md group">
-					<div class="flex items-start justify-between gap-6">
-						<div class="space-y-2">
-							<h3 class="font-display text-2xl text-text">{story.title}</h3>
-							<p class="text-xs font-medium tracking-wide text-accent uppercase">{new Date(story.createdAt).toLocaleDateString()}</p>
-							<p class="text-[0.95rem] text-muted leading-relaxed line-clamp-2 max-w-2xl">{story.body}</p>
+				<div class="bg-white rounded-xl p-6 border border-zinc-200 hover:border-zinc-300 transition-colors group">
+					<div class="flex items-start justify-between gap-4">
+						<div class="flex-1 min-w-0">
+							<h3 class="font-display text-xl text-zinc-900 mb-2">{story.title}</h3>
+							<p class="text-xs font-medium text-zinc-400 uppercase tracking-wide mb-3">
+								{new Date(story.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+							</p>
+							<p class="text-zinc-600 line-clamp-2">{story.body}</p>
 						</div>
 						<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-							<Button variant="subtle" class="text-xs px-4 h-9">Edit</Button>
-							<Button variant="danger" class="text-xs px-4 h-9">Delete</Button>
+							<button class="px-4 py-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 bg-zinc-100 rounded-lg hover:bg-zinc-200 transition-colors">
+								Edit
+							</button>
+							<button class="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 bg-red-50 rounded-lg hover:bg-red-100 transition-colors">
+								Delete
+							</button>
 						</div>
 					</div>
-				</Card>
+				</div>
 			{/each}
 		</div>
 	{/if}
