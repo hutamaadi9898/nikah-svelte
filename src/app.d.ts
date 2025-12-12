@@ -7,6 +7,11 @@ declare global {
             cf: CfProperties
             ctx: ExecutionContext
         }
+		interface Locals {
+			auth: import('$lib/server/auth').NikahAuth;
+			session: import('$lib/server/auth').NikahSession;
+			user: import('$lib/server/auth').NikahSessionData['user'] | null;
+		}
     }
 }
 
